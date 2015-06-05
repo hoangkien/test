@@ -1,0 +1,13 @@
+#login_form
+  %h1 LOGIN
+  - if flash[:notice]
+    #notice
+      = flash[:notice]
+  = form_for(:session, url: sessions_create_path) do |f|
+    #user
+      = f.label :username, "Username"
+      = f.text_field :username
+    #password
+      = f.label :password, "Password"
+      = f.password_field :password
+    = f.submit "LOGIN", :disable_with => 'logining...'

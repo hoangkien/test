@@ -1,0 +1,20 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @article.title
+%p
+  %b Content:
+  = raw @article.content
+%p
+  %b Author:
+  = @article.user.fullname
+%ol#comments
+  = render @comments
+=form_for [@article,@article.comments.new], remote: true do |f|
+  = f.text_area :content,cols:50, rows:5, placeholder:"write comment ......."
+  %br
+  = f.button "Send", :disable_with => 'Sending...'
+= link_to 'Edit', edit_article_path(@article)
+\|
+= link_to 'Back', articles_path
